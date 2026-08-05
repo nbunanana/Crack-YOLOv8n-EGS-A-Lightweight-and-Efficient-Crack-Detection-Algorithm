@@ -1,0 +1,8 @@
+# 此数据集只用于model.val
+path: robotflow_crack2
+train: test/images
+val: test/images
+test: test/images
+
+names:
+  0: crack

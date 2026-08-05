@@ -1,0 +1,9 @@
+# 此数据集只用于model.val
+path: DeepCrack
+train: test/images
+val: test/images
+test: test/images
+
+nc: 1
+names: 
+  0: crack

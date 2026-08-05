@@ -1,0 +1,92 @@
+# ===== 训练结果和模型权重(体积大,不上传) =====
+runs/
+ultralytics-main/runs/
+*.pt
+*.pth
+*.onnx
+*.pb
+*.torchscript
+*.mnn
+*.tflite
+*.engine
+*.mlmodel
+*.pnnx.bin
+*.pnnx.onnx
+*_ncnn_model/
+*_saved_model/
+weights/
+
+# ===== 数据集(只保留 yaml 配置,排除图像/标签/压缩包) =====
+datasets/**/*.jpg
+datasets/**/*.jpeg
+datasets/**/*.png
+datasets/**/*.bmp
+datasets/**/*.txt
+datasets/**/*.zip
+datasets/**/*.7z
+datasets/**/*.tar
+datasets/**/*.tar.gz
+datasets/**/*.cache
+datasets/**/images/
+datasets/**/labels/
+ultralytics-main/datasets/**/*.jpg
+ultralytics-main/datasets/**/*.jpeg
+ultralytics-main/datasets/**/*.png
+ultralytics-main/datasets/**/*.bmp
+ultralytics-main/datasets/**/*.txt
+ultralytics-main/datasets/**/*.zip
+ultralytics-main/datasets/**/*.7z
+ultralytics-main/datasets/**/*.cache
+ultralytics-main/datasets/**/images/
+ultralytics-main/datasets/**/labels/
+
+# ===== 压缩包 =====
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.rar
+*.gz
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+develop-eggs/
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# ===== 日志和缓存 =====
+*.log
+*.cache
+*.tmp
+*.bak
+benchmark.txt
+
+# ===== 数据文件 =====
+*.ndjson
+*.jsonl
+
+# ===== IDE 和编辑器 =====
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== 系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 视频 =====
+*.mp4
+*.avi
+*.mov
