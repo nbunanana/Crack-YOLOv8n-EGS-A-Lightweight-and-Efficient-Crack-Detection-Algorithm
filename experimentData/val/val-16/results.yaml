@@ -1,0 +1,12 @@
+Timestamp: 2026-07-13 23:39:29
+train_num：train-12
+Model: yolo26s
+Dataset: crack-seg.yaml
+Split: test
+Precision: 0.7755
+Recall: 0.6419
+mAP50: 0.6204
+mAP50-95: 0.4781
+Params(M): 9.4656
+FLOPs(G): 20.5
+FPS: 153.43 帧/s

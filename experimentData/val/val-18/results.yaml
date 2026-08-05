@@ -1,0 +1,12 @@
+Timestamp: 2026-07-13 23:41:06
+train_num：train-24
+Model: rtdetr-l
+Dataset: crack-seg.yaml
+Split: test
+Precision: 0.8310
+Recall: 0.6892
+mAP50: 0.7675
+mAP50-95: 0.5903
+Params(M): 31.9858
+FLOPs(G): 103.4
+FPS: 50.45 帧/s

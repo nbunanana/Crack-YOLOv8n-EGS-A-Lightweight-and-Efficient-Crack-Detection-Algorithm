@@ -1,0 +1,12 @@
+Timestamp: 2026-07-13 23:48:13
+train_num：train-6
+Model: yolov5n
+Dataset: robotflow_crack.yaml
+Split: test
+Precision: 0.5483
+Recall: 0.4378
+mAP50: 0.4473
+mAP50-95: 0.1501
+Params(M): 2.5031
+FLOPs(G): 7.1
+FPS: 291.82 帧/s

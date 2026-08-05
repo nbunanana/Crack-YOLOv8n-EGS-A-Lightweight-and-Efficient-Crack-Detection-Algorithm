@@ -1,0 +1,12 @@
+Timestamp: 2026-07-13 23:46:38
+train_num：train-43
+Model: yolov8-ema-crack
+Dataset: robotflow_crack.yaml
+Split: test
+Precision: 0.7071
+Recall: 0.5838
+mAP50: 0.6058
+mAP50-95: 0.2591
+Params(M): 3.0082
+FLOPs(G): 8.2
+FPS: 250.92 帧/s

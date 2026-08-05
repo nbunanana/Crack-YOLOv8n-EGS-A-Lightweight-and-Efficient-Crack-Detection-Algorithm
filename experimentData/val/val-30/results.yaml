@@ -1,0 +1,12 @@
+Timestamp: 2026-07-14 00:07:57
+train_num：train-24
+Model: rtdetr-l
+Dataset: robotflow_crack.yaml
+Split: test
+Precision: 0.7924
+Recall: 0.7460
+mAP50: 0.7792
+mAP50-95: 0.4451
+Params(M): 31.9858
+FLOPs(G): 103.4
+FPS: 54.99 帧/s

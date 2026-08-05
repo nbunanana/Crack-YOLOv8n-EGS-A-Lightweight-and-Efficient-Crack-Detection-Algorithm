@@ -17,9 +17,11 @@
 - [致谢](#致谢)
 - [开源协议](#开源协议)
 
+
 ## 项目简介
 
 针对裂缝检测中YOLOv8n框回归精度不足、小批量训练不稳定及细长目标特征提取不充分等问题，提出一种改进算法：在Neck网络P3路径嵌入EMA注意力模块增强多尺度特征；以GN替代BN消除统计抖动；采用SIoU损失函数引入角度成本优化细长裂缝定位。Crack-Seg数据集上的实验表明，三个模块具有互补效应，模型 mAP\@0.5 达 73.24%，mAP\@0.5:0.95 达 51.45%，较基线提升 8.58 和 8.46 个百分点。在 Roboflow-Crack 数据集上 mAP50 达到 60.58%，mAP50−95 达到 25.91%，较基线提升 9.23 和 7.56 个百分点。参数量仅增加 0.0024M，推理速度平均达到 220 帧/s，实现了检测精度与复杂度的平衡。
+
 
 ## 环境配置
 
@@ -31,10 +33,11 @@
 | GPU     | NVIDIA GeForce RTX 5060 Laptop 8GB |
 | 依赖      | 见 [requirements.txt](requirements.txt)               |
 
+
 ## 数据集
 ### 1.Crack-seg数据集
 
-- 数据来源:ultralytics官方采集[^1]**\[1]**
+- 数据来源:ultralytics官方采集[^1]
 - 类别数:1(裂缝)
 - 训练/验证/测试划分:7:1:2
 
@@ -56,8 +59,8 @@
 
 ### 1.robotflow_crack数据集
 
-- 数据集名称:robotflow\_crack
-- 数据来源:\[待填写:自采集 / 公开数据集(注明出处)]
+- 数据集名称:robotflow_crack
+- 数据来源:robotflow平台开源数据集[^2]
 - 类别数:1(裂缝)
 - 训练/验证/测试划分:0:0:1
 
@@ -72,32 +75,35 @@
   └── robotflow_crack.yaml
   ```
 
+
 ## 模型结构
 
 - 基础模型:YOLOv8n
 - 改进点:
-  - 引入EMA注意力机制(代码位置:`[待填写文件路径]`)
+  - 引入EMA注意力机制(代码位置:`ultralytics-main/ultralytics/nn/modules/attention.py`)[^3]
+  - 引入SIoU损失函数(代码位置:`ultralytics-main/ultralytics/utils/metrics.py#L170`)[^4]
+  - 引入Group Normalization(代码位置:`ultralytics-main/ultralytics/nn/modules/conv.py#L93-L111`)[^5]
   - 模型配置文件:`ultralytics-main/ultralytics/cfg/models/v8/yolov8-ema-crack.yaml`
 
 模型结构图:
 
-\[待填写:可在此处插入模型结构图 `![model](路径)`]
+![改进模型架构图](./png/改进模型架构图.png)
+
 
 ## 安装
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/[待填写:用户名]/[待填写:仓库名].git
-cd [待填写:仓库名]/ultralytics-main
+git@github.com:nbunanana/Research-on-Crack-Detection-Algorithm-Based-on-Improved-YOLOv8.git
 
 # 2. 创建 conda 环境
-conda create -n pytorch_gpu python=[待填写:版本]
-conda activate pytorch_gpu
+conda create -n conda_env python=3.11
+conda activate conda_env
 
 # 3. 安装依赖
-pip install -e .
-# 或 pip install -r requirements.txt
+pip install -r requirements.txt
 ```
+
 
 ## 训练
 
@@ -115,6 +121,7 @@ yolo detect train \
 - 训练结果保存在 `runs/detect/train-X/`
 - 最终权重:`runs/detect/train-X/weights/best.pt`
 
+
 ## 评估
 
 ```bash
@@ -122,8 +129,9 @@ yolo detect train \
 yolo detect val model=runs/detect/train-X/weights/best.pt data=crack-seg.yaml split=test imgsz=640
 
 # 方式二:使用项目提供的评估脚本(输出指标 + FPS)
-python getresult.py --model train-X --data crack-seg.yaml --split test
+python ./test/getresult.py --model train-X --data crack-seg.yaml --split test
 ```
+
 
 ## 推理
 
@@ -135,24 +143,13 @@ yolo predict model=runs/detect/train-X/weights/best.pt source="图片路径.jpg"
 yolo predict model=runs/detect/train-X/weights/best.pt source="图片文件夹路径/" conf=0.25
 ```
 
-结果保存在 `runs/detect/predict/`。
+结果保存在 `runs/detect/predict-X`。
+
 
 ## 实验结果
 
-\[待填写:填写实验结果表格,例如:]
+实验结果位于`./experimentData/`中,具体编号见[README.md](./experimentData/README.md)
 
-| 模型                  | Params(M) | FLOPs(G) | mAP\@0.5 | mAP\@0.5:0.95 | FPS    |
-| ------------------- | --------- | -------- | -------- | ------------- | ------ |
-| YOLOv8n(基线)         | \[待填写]    | \[待填写]   | \[待填写]   | \[待填写]        | \[待填写] |
-| YOLOv8n + EMA(Ours) | \[待填写]    | \[待填写]   | \[待填写]   | \[待填写]        | \[待填写] |
-
-消融实验:
-
-\[待填写:消融实验表格或说明]
-
-可视化对比:
-
-\[待填写:可插入检测效果对比图]
 
 ## 引用
 
@@ -174,22 +171,30 @@ yolo predict model=runs/detect/train-X/weights/best.pt source="图片文件夹�
 }
 ```
 
+
 ## 致谢
 
 - 感谢 [HuOldBig](https://github.com/HuOldBig) 提供的技术指导
 - 感谢 [Ultralytics](https://github.com/ultralytics/ultralytics) 提供的 YOLOv8 开源框架以及数据集
-- 感谢[Robotflow](https://universe.roboflow.com) 提供的数据集搜索服务
+- 感谢 [Robotflow](https://universe.roboflow.com) 提供的数据集搜索服务
 
 
 ## 开源协议
 
 Copyright (c) 2026 YuChunDing, Anhui Jianzhu University
 
-本项目基于 Ultralytics 二次开发,遵循 [AGPL-3.0](LICENSE) 协议。
+本项目基于 Ultralytics 二次开发,遵循 [AGPL-3.0](LICENSE) 协议
+
 
 ## 参考文献
 
-[^1]: Ultralytics. Crack-Seg: A crack segmentation dataset for computervision\[DB/OL]. (2023)\[2026-06-28].<https://github.com/ultralytics/assets/releases/download/v0.0.0/crack-seg.zip>.
+[^1]: Ultralytics. Crack-Seg: A crack segmentation dataset for computer vision\[DB/OL]. (2023)\[2026-06-28].<https://github.com/ultralytics/assets/releases/download/v0.0.0/crack-seg.zip>.
 
 [^2]: Roboflow. Crack v2: A crack detection dataset for computer vision\[DB/OL]. (2026-07-05)\[2026-07-12].<https://universe.roboflow.com/s-workspace-bb4fj/crack-detection-ypnwo-bn3zg>.
+
+[^3]: OUYANG D L, HE S, ZHANG G Z, et al. Efficient multi-scale attention module with cross-spatial learning[C]//ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2023: 1-5. DOI: 10.1109/ICASSP49357.2023.10096516.
+
+[^4]: GEVORGYAN Z. SIoU loss: More powerful learning for bounding box regression[J]. arXiv preprint arXiv:2205.12740, 2022.
+
+[^5]: WU Y X, HE K M. Group normalization[C]//Proceedings of the European Conference on Computer Vision (ECCV). Munich: Springer, 2018: 3-19. DOI: 10.1007/978-3-030-01261-8_1.
 

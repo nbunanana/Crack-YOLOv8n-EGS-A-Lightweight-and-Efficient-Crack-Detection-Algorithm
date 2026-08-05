@@ -1,0 +1,12 @@
+Timestamp: 2026-08-05 19:28:03
+train_num：train-43
+Model: yolov8-ema-crack
+Dataset: crack-seg.yaml
+Split: test
+Precision: 0.9077
+Recall: 0.6486
+mAP50: 0.7324
+mAP50-95: 0.5145
+Params(M): 3.0082
+FLOPs(G): 8.2
+FPS: 210.93 帧/s
