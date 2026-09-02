@@ -1,4 +1,4 @@
-# 基于改进YOLOv8的裂缝检测算法研究
+# Crack-YOLOv8n-EGS：一种轻量高效的裂缝检测算法
 
 > 在YOLOv8基础上引入EMA注意力机制、Group Normalization、SIoU损失函数,实现建筑物表面裂缝的高效检测。
 
