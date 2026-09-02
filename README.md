@@ -1,4 +1,4 @@
-# Research on Crack Detection Algorithm Based on Improved YOLOv8
+# Crack-YOLOv8n-EGS: A Lightweight and Efficient Crack Detection Algorithm
 
 > Based on YOLOv8, the EMA attention mechanism, Group Normalization, and SIoU loss function are introduced to achieve efficient detection of cracks on building surfaces.
 
